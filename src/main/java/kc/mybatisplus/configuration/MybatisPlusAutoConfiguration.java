@@ -1,5 +1,6 @@
 package kc.mybatisplus.configuration;
 
+import com.baomidou.mybatisplus.annotation.DbType;
 import com.baomidou.mybatisplus.autoconfigure.MybatisPlusPropertiesCustomizer;
 import com.baomidou.mybatisplus.core.MybatisConfiguration;
 import com.baomidou.mybatisplus.core.config.GlobalConfig;
@@ -9,8 +10,10 @@ import com.baomidou.mybatisplus.extension.plugins.PaginationInterceptor;
 import com.baomidou.mybatisplus.extension.plugins.tenant.TenantHandler;
 import com.baomidou.mybatisplus.extension.plugins.tenant.TenantSqlParser;
 import com.fasterxml.jackson.databind.SerializationFeature;
+import kc.mybatisplus.component.UserService;
 import net.sf.jsqlparser.expression.Expression;
 import net.sf.jsqlparser.expression.StringValue;
+import org.springframework.beans.factory.annotation.Autowire;
 import org.springframework.boot.autoconfigure.jackson.Jackson2ObjectMapperBuilderCustomizer;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -18,6 +21,8 @@ import org.springframework.transaction.annotation.EnableTransactionManagement;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
+import java.util.concurrent.ConcurrentHashMap;
 
 /**
  * 通用枚举
@@ -28,6 +33,7 @@ import java.util.List;
 @EnableTransactionManagement(proxyTargetClass = true)
 
 public class MybatisPlusAutoConfiguration {
+
 
     @Bean
     public MybatisPlusPropertiesCustomizer mybatisPlusPropertiesCustomizer() {
@@ -50,32 +56,40 @@ public class MybatisPlusAutoConfiguration {
      * @return
      */
 
-    @Bean
-    public PaginationInterceptor paginationInterceptor() {
-        PaginationInterceptor paginationInterceptor = new PaginationInterceptor();
+//    @Bean
+//    public PaginationInterceptor paginationInterceptor() {
+//        PaginationInterceptor paginationInterceptor = new PaginationInterceptor();
+//
+//        List<ISqlParser> sqlParserList=new ArrayList<>();
+//        TenantSqlParser tenantSqlParser=new TenantSqlParser();
+//        tenantSqlParser.setTenantHandler(new TenantHandler() {
+//            @Override
+//            public Expression getTenantId(boolean select) {
+//                String tenantId = "3";
+//                return new StringValue(tenantId);
+//            }
+//
+//            @Override
+//            public String getTenantIdColumn() {
+//                return "tenant_id";
+//            }
+//
+//            @Override
+//            public boolean doTableFilter(String tableName) {
+//                return false;
+//            }
+//        });
+//
+//        sqlParserList.add(tenantSqlParser);
+//        paginationInterceptor.setSqlParserList(sqlParserList);
+//        return paginationInterceptor;
+//    }
 
-        List<ISqlParser> sqlParserList=new ArrayList<>();
-        TenantSqlParser tenantSqlParser=new TenantSqlParser();
-        tenantSqlParser.setTenantHandler(new TenantHandler() {
-            @Override
-            public Expression getTenantId(boolean select) {
-                String tenantId = "3";
-                return new StringValue(tenantId);
-            }
-
-            @Override
-            public String getTenantIdColumn() {
-                return "tenant_id";
-            }
-
-            @Override
-            public boolean doTableFilter(String tableName) {
-                return false;
-            }
-        });
-
-        sqlParserList.add(tenantSqlParser);
-        paginationInterceptor.setSqlParserList(sqlParserList);
-        return paginationInterceptor;
+    //@Bean(autowire=Autowire.BY_TYPE)
+    public UserService  userService(){
+        return new UserService();
     }
+
+
+
 }

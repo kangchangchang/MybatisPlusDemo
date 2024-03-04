@@ -2,12 +2,14 @@ package kc.mybatisplus.controller;
 
 import kc.mybatisplus.entity.User;
 import kc.mybatisplus.service.BatchMybatisService;
+import kc.mybatisplus.service.FinanceReportServiceImpl;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import javax.annotation.Resource;
+import java.io.FileNotFoundException;
 import java.util.List;
 import java.util.concurrent.ExecutionException;
 
@@ -20,6 +22,8 @@ public class BatchMybatisController {
 
     @Resource
     BatchMybatisService batchMybatisService;
+    @Resource
+    FinanceReportServiceImpl financeReportService;
 
     @RequestMapping("/batchInsert")
     public void test() throws ExecutionException, InterruptedException {
@@ -46,5 +50,10 @@ public class BatchMybatisController {
     @RequestMapping("/update")
     public void update(@RequestBody  User user) {
          batchMybatisService.updateUser(user);
+    }
+
+    @RequestMapping("/financeReport")
+    public void  financeReport() throws FileNotFoundException {
+        financeReportService.readBatch();;
     }
 }
