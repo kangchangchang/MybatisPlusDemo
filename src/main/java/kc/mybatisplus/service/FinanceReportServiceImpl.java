@@ -37,7 +37,7 @@ public class FinanceReportServiceImpl implements FinanceReportService, Initializ
 
 
     @Resource
-    DealerMerchantRelMapper dealerMerchantRelMapper;
+    BaseCarSkuDetailMapper baseCarSkuDetailMapper;
 
     AtomicInteger i= new AtomicInteger();
 
@@ -52,7 +52,7 @@ public class FinanceReportServiceImpl implements FinanceReportService, Initializ
 
     @Override
     public void afterPropertiesSet() throws Exception {
-        String fileName = "C:\\Users\\pc\\Desktop\\财务报表\\工行新一代订单进件明细（全）-2024-02-01~2024-02-29\\test3.xlsx";
+        String fileName = "C:\\Users\\pc\\Desktop\\gxh\\工行新一代订单进件明细（全量）-2024-06-01~2024-06-30.xlsx";
         // 这里默认每次会读取100条数据 然后返回过来 直接调用使用数据就行
         // 具体需要返回多少行可以在`PageReadListener`的构造函数设置
         EasyExcel.read(fileName, FinanceReport.class, new PageReadListener<FinanceReport>(dataList -> {
@@ -61,11 +61,11 @@ public class FinanceReportServiceImpl implements FinanceReportService, Initializ
             }
         })).sheet().doRead();
 
-//        LocalDateTime date=LocalDateTime.now();
-//        List<String> list=new ArrayList<>();
-//        String fileName = "C:\\Users\\pc\\Desktop\\gxh\\base_car_spec.xlsx";
-//        // 这里默认每次会读取100条数据 然后返回过来 直接调用使用数据就行
-//        // 具体需要返回多少行可以在`PageReadListener`的构造函数设置
+        LocalDateTime date=LocalDateTime.now();
+        List<String> list=new ArrayList<>();
+//        String fileName = "C:\\Users\\pc\\Desktop\\gxh\\base_car_sku_detail1.xlsx";
+        // 这里默认每次会读取100条数据 然后返回过来 直接调用使用数据就行
+        // 具体需要返回多少行可以在`PageReadListener`的构造函数设置
 //        EasyExcel.read(fileName, BaseCarSpecs.class, new PageReadListener<BaseCarSpecs>(dataList -> {
 //            for (BaseCarSpecs demoData : dataList) {
 //                if(!list.contains(demoData.getSpecId())){
@@ -74,7 +74,7 @@ public class FinanceReportServiceImpl implements FinanceReportService, Initializ
 //                    demoData.setUpdateTime(date);
 //                    demoData.setLastUpdateTime(date);
 //                    demoData.setBusinessType("stages,trial");
-//                    demoData.setSpecName("24款"+demoData.getSpecName());
+//                 //   demoData.setSpecName("24款"+demoData.getSpecName());
 //                    demoData.setVersionYear("2024");
 //                    System.out.println(demoData.getSpecName());
 //                    baseCarSpecsMapper.insert(demoData);
@@ -83,5 +83,19 @@ public class FinanceReportServiceImpl implements FinanceReportService, Initializ
 //            }
 //        })).sheet().doRead();
 
+//
+//        EasyExcel.read(fileName, BaseCarSkuDetail.class, new PageReadListener<BaseCarSkuDetail>(dataList -> {
+//            for (BaseCarSkuDetail demoData : dataList) {
+//                    demoData.setDelFlag(0);
+//                    demoData.setCreateTime(date);
+//                    demoData.setUpdateTime(date);
+//                    demoData.setLastUpdateTime(date);
+//
+//                    System.out.println(demoData.getSpecName());
+//                    baseCarSkuDetailMapper.insert(demoData);
+//                    list.add(demoData.getSpecId());
+//
+//            }
+//        })).sheet().doRead();
     }
 }

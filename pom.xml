@@ -86,7 +86,28 @@
             <artifactId>easyexcel-core</artifactId>
             <version>3.3.2</version>
         </dependency>
+        <dependency>
+            <groupId>com.alibaba</groupId>
+            <artifactId>easyexcel-support</artifactId>
+            <version>3.3.2</version>
+        </dependency>
 
+        <dependency>
+            <groupId>org.apache.commons</groupId>
+            <artifactId>commons-compress</artifactId>
+            <version>1.20</version> <!-- 请检查并使用最新的稳定版本 -->
+        </dependency>
 
+        <dependency>
+            <groupId>org.apache.xmlbeans</groupId>
+            <artifactId>xmlbeans</artifactId>
+            <version>3.1.0</version>
+        </dependency>
+
+        <dependency>
+            <groupId>org.apache.commons</groupId>
+            <artifactId>commons-collections4</artifactId>
+            <version>4.4</version> <!-- 请检查并使用最新的稳定版本 -->
+        </dependency>
     </dependencies>
 </project>

@@ -66,8 +66,6 @@ public class BaseCarSkuDetail extends Model<BaseCarSkuDetail> {
     /**
      * 车辆价格
      */
-    @ExcelIgnore
-
     private BigDecimal carTotalPrice;
 
     /**

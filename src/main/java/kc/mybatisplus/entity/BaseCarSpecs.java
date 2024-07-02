@@ -66,7 +66,6 @@ public class BaseCarSpecs implements Serializable {
     /**
      * 指导价格
      */
-    @ExcelIgnore
     private BigDecimal advisePrics;
 
     /**
